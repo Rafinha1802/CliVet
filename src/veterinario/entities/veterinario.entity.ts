@@ -34,4 +34,7 @@ export class Veterinario {
     length: 50
    })
    email: string;
+
+   @Column('time')
+   horario_de_atendimento: string;
 }
