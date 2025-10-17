@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { VeterinarioModule } from './veterinario/veterinario.module';
+import { TutorModule } from './tutor/tutor.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  // imports: [VeterinarioModule],
+  // imports: [VeterinarioModule],[TutorModule]
   imports: [
    ConfigModule.forRoot({
      isGlobal: true,
@@ -28,6 +29,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
      inject:[ConfigService],
    }),
    VeterinarioModule,
+   TutorModule,
  ],
 
   controllers: [AppController],

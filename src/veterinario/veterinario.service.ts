@@ -1,26 +1,43 @@
-import { Injectable } from '@nestjs/common';
-import { CreateVeterinarioDto } from './dto/create-veterinario.dto';
-import { UpdateVeterinarioDto } from './dto/update-veterinario.dto';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { VeterinarioDto } from './dto/veterinario.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Veterinario } from './entities/veterinario.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class VeterinarioService {
-  create(createVeterinarioDto: CreateVeterinarioDto) {
-    return 'This action adds a new veterinario';
-  }
+   constructor(
+       @InjectRepository(Veterinario)
+       private veterinariosRepository:Repository<Veterinario>,
+   ){}
 
-  findAll() {
-    return `This action returns all veterinario`;
-  }
+   async create(veterinarioData:VeterinarioDto): Promise<Veterinario> {
+       const novoVeterinario = this.veterinariosRepository.create(veterinarioData);
+       return this.veterinariosRepository.save(novoVeterinario);
+   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} veterinario`;
-  }
+   findAll(): Promise<Veterinario[]>{
+       return this.veterinariosRepository.find();
+   }
 
-  update(id: number, updateVeterinarioDto: UpdateVeterinarioDto) {
-    return `This action updates a #${id} veterinario`;
-  }
+   async findOne(id_veterinario: number): Promise<Veterinario>{
+       const veterinario = await this.veterinariosRepository.findOneBy({id_veterinario});
+       if(!veterinario){
+           throw new NotFoundException(`Veterinario com ID ${id_veterinario} não encontrado.`)
+       }
+       return veterinario;
+   }
 
-  remove(id: number) {
-    return `This action removes a #${id} veterinario`;
-  }
+   async update(id_veterinario: number, updateData: VeterinarioDto): Promise<Veterinario> {
+       const veterinario = await this.findOne(id_veterinario);
+       this.veterinariosRepository.merge(veterinario, updateData);
+       return this.veterinariosRepository.save(veterinario);
+   }
+
+   async remove(id_veterinario: number): Promise<void> {
+       const result = await this.veterinariosRepository.delete(id_veterinario);
+       if(result.affected === 0){
+           throw new NotFoundException(`Veterinario com ID ${id_veterinario} não encontrado para excluir.`)
+       }
+   }
 }
