@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { VeterinarioModule } from './veterinario/veterinario.module';
-import { TutorModule } from './tutor/tutor.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { VeterinarioModule } from './veterinario/veterinario.module';
+import { TutorModule } from './tutor/tutor.module';
+import { PacienteModule } from './paciente/paciente.module';
 
 @Module({
-  // imports: [VeterinarioModule],[TutorModule]
+  // imports: [VeterinarioModule],[TutorModule],[PacienteModule]
   imports: [
    ConfigModule.forRoot({
      isGlobal: true,
@@ -30,6 +31,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
    }),
    VeterinarioModule,
    TutorModule,
+   PacienteModule,
  ],
 
   controllers: [AppController],
