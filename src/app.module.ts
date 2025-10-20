@@ -5,10 +5,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { VeterinarioModule } from './veterinario/veterinario.module';
 import { TutorModule } from './tutor/tutor.module';
-import { PacienteModule } from './paciente/paciente.module';
+import { PacienteModule } from './paciente2/paciente.module';
+import { VacinaModule } from './vacina/vacina.module';
 
 @Module({
-  // imports: [VeterinarioModule],[TutorModule],[PacienteModule]
+  // imports: [VeterinarioModule],[TutorModule],[PacienteModule], [VacinaModule]
   imports: [
    ConfigModule.forRoot({
      isGlobal: true,
@@ -32,6 +33,7 @@ import { PacienteModule } from './paciente/paciente.module';
    VeterinarioModule,
    TutorModule,
    PacienteModule,
+   VacinaModule,
  ],
 
   controllers: [AppController],
