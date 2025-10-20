@@ -7,9 +7,10 @@ import { VeterinarioModule } from './veterinario/veterinario.module';
 import { TutorModule } from './tutor/tutor.module';
 import { PacienteModule } from './paciente2/paciente.module';
 import { VacinaModule } from './vacina/vacina.module';
+import { ConsultaModule } from './consulta/consulta.module';
 
 @Module({
-  // imports: [VeterinarioModule],[TutorModule],[PacienteModule], [VacinaModule]
+  // imports: [VeterinarioModule],[TutorModule],[PacienteModule], [VacinaModule], [ConsultaModule]
   imports: [
    ConfigModule.forRoot({
      isGlobal: true,
@@ -34,6 +35,7 @@ import { VacinaModule } from './vacina/vacina.module';
    TutorModule,
    PacienteModule,
    VacinaModule,
+   ConsultaModule
  ],
 
   controllers: [AppController],
