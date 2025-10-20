@@ -6,6 +6,7 @@ import { TutorModule } from './tutor/tutor.module';
 import {PacienteModule } from './paciente/paciente.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConsultaModule } from './consulta/consulta.module';
 
 @Module({
   // imports: [VeterinarioModule],[TutorModule], [PacienteModule]
@@ -31,7 +32,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
    }),
    VeterinarioModule,
    TutorModule,
-   PacienteModule
+   PacienteModule,
+   ConsultaModule
  ],
 
   controllers: [AppController],
