@@ -8,9 +8,12 @@ import { TutorModule } from './tutor/tutor.module';
 import { PacienteModule } from './paciente2/paciente.module';
 import { VacinaModule } from './vacina/vacina.module';
 import { ConsultaModule } from './consulta/consulta.module';
+import { MedicamentoModule } from './medicamento/medicamento.module';
+import { PagamentoModule } from './pagamento/pagamento.module';
 
 @Module({
-  // imports: [VeterinarioModule],[TutorModule],[PacienteModule], [VacinaModule], [ConsultaModule]
+  // imports: [VeterinarioModule],[TutorModule],[PacienteModule], [VacinaModule],
+  //          [ConsultaModule], [MedicamentoModule], [PagamentoModule]
   imports: [
    ConfigModule.forRoot({
      isGlobal: true,
@@ -35,7 +38,9 @@ import { ConsultaModule } from './consulta/consulta.module';
    TutorModule,
    PacienteModule,
    VacinaModule,
-   ConsultaModule
+   ConsultaModule,
+   MedicamentoModule,
+   PagamentoModule
  ],
 
   controllers: [AppController],
